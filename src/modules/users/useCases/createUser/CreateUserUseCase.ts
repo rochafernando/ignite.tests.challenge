@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
 import { hash } from 'bcryptjs';
 
@@ -9,9 +10,9 @@ import { ICreateUserDTO } from "./ICreateUserDTO";
 @injectable()
 export class CreateUserUseCase {
   constructor(
-    @inject('UsersRepository')
+    @inject("UsersRepository")
     private usersRepository: IUsersRepository,
-  ) {}
+  ) { }
 
   async execute({ name, email, password }: ICreateUserDTO) {
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
